@@ -36,11 +36,14 @@ EXPOSE 5901
 # novnc web port
 EXPOSE 6901
 
-ADD .vnc /root/.vnc
-ADD .config /root/.config
-ADD Desktop /root/Desktop
-ADD scripts /root/scripts
-RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh /root/Desktop/*.desktop
+RUN useradd vncuser
+RUN mkdir /home/vncuser/
+ADD .vnc /home/vncuser/.vnc
+ADD .config /home/vncuser/.config
+ADD Desktop /home/vncuser/Desktop
+ADD scripts /home/vncuser/scripts
+RUN chmod +x /home/vncuser/.vnc/xstartup /etc/X11/xinit/xinitrc /home/vncuser/scripts/*.sh /home/vncuser/Desktop/*.desktop
+RUN chown vncuser -Rf /home/vncuser
 
-ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
+ENTRYPOINT ["/home/vncuser/scripts/vnc_startup.sh", "-u", "vncuser"]
 CMD ["--tail-log"]
