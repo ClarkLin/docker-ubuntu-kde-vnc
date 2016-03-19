@@ -15,18 +15,3 @@ sleep 1
 ##log connect options
 echo -e "\n------------------ VNC environment started ------------------"
 echo -e "\nVNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
-
-for i in "$@"
-do
-case $i in
-    # if option `-t` or `--tail-log` block the execution and tail the VNC log
-    -t|--tail-log)
-    echo -e "\n------------------ /root/.vnc/*$DISPLAY.log ------------------"
-    tail -f /home/vncuser/.vnc/*$DISPLAY.log
-    ;;
-    *)
-    # unknown option ==> call command
-    exec $i
-    ;;
-esac
-done
