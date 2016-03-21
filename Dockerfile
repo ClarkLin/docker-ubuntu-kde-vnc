@@ -42,8 +42,8 @@ ADD .vnc /home/vncuser/.vnc
 ADD .config /home/vncuser/.config
 ADD Desktop /home/vncuser/Desktop
 ADD scripts /home/vncuser/scripts
-RUN chmod +x /home/vncuser/.vnc/xstartup /etc/X11/xinit/xinitrc /home/vncuser/scripts/*.sh /home/vncuser/Desktop/*.desktop
+RUN chmod a+x /home/vncuser/.vnc/xstartup /etc/X11/xinit/xinitrc /home/vncuser/scripts/*.sh /home/vncuser/Desktop/*.desktop
 RUN chown vncuser -Rf /home/vncuser
 
-ENTRYPOINT ["/home/vncuser/scripts/vnc_startup.sh", "-u", "vncuser"]
+ENTRYPOINT ["/home/vncuser/scripts/vnc_startup.sh"]
 CMD ["--tail-log"]
