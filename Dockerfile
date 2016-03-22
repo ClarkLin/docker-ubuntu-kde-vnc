@@ -23,7 +23,6 @@ RUN echo "deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe 
 
 ############### xvnc / kde installation ###############
 RUN apt-get update \ 
-	&& apt-get upgrade -y \
 	&& apt-get install -y supervisor vim kubuntu-desktop vnc4server wget unzip firefox language-pack-zh-hans ttf-wqy-zenhei
 
 ############### Install chrome browser ###############
