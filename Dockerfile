@@ -24,12 +24,12 @@ RUN echo "deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe 
 ############### xvnc / kde installation ###############
 RUN apt-get update \ 
 	&& apt-get upgrade -y \
-	&& apt-get install -y supervisor vim kubuntu-desktop vnc4server wget unzip firefox
+	&& apt-get install -y supervisor vim kubuntu-desktop vnc4server wget unzip firefox language-pack-zh-hans ttf-wqy-zenhei
 
 ############### Install chrome browser ###############
 RUN apt-get install -y chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome \
-    && echo "alias chromium-browser='/usr/bin/chromium-browser --user-data-dir'" >> /root/.bashrc
+    && echo "alias chromium-browser='/usr/bin/chromium-browser --user-data-dir'" >> /home/vncuser/.bashrc
 
 # xvnc server porst, if $DISPLAY=:1 port will be 5901
 EXPOSE 5901
